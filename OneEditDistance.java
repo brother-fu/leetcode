@@ -1,27 +1,24 @@
-public class OneEditDistance  {
+public class OneEditDistance {
     public boolean isOneEditDistance(String s, String t) {
-        int len1 = s.length(), len2 = t.length();
+        int lens = s.length(), lent = t.length();
+        if (Math.abs(lens - lent) > 1) return false;
         int i = 0, j = 0;
-        if ((int)Math.abs(len1 - len2) > 1)
-            return false; /*teacher, tache*/
-        int diff = 0;
-        while(i < len1 && j < len2) {
-            char sc = s.charAt(i);
-            char tc = t.charAt(j);
-            if (sc == tc) {
-                i++;
-                j++;
-            } else {
+        int count = 0;
+        while(i < lens && j < lent) {
+            if (s.charAt(i) == t.charAt(j)) {
                 i++; j++;
-                if (len1 < len2)
-                    i--;
-                if (len1 > len2)
-                    j--;
-                diff++;
+            } else {
+                if (lens > lent) 
+                   i++;
+                else if (lens < lent)
+                   j++;
+                else {
+                   i++; j++; //这里括号不能能略
+                }
+                if (++count > 1)
+                    return false;
             }
-            if (diff > 1)
-               return false;
         }
-        return len1 - len2 == 1 || len1 - len2 == -1 || diff == 1; /*diff ==1不要忘记了*/
+        return (count == 1) || (Math.abs(lens - lent) == 1);
     }
 }
