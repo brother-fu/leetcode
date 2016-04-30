@@ -1,3 +1,12 @@
+//确定循环随着范围缩小，依然有效力的方法
+
+/*怎么判断循环条件是不是正确，范围取小之后，继续循环条件，会不会出错！*/
+/*这里边界变小之后是不是依然满足条件！*/
+/*经验证，与0 / start / end比都能获得正确的答案*/
+
+
+
+
 public class Solution {
     /*comparing with nums[0]*/
     public int findMin1(int[] nums) {
@@ -49,3 +58,4 @@ public class Solution {
         return Math.min(nums[start], nums[end]);
     }
 }
+
